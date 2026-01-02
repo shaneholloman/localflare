@@ -808,25 +808,24 @@ export function EditableDataTable({
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                    {/* Resize handle - always visible with clear affordance */}
+                    {/* Resize handle - subtle, only visible on hover */}
                     {header.column.getCanResize() && (
                       <div
                         onMouseDown={header.getResizeHandler()}
                         onTouchStart={header.getResizeHandler()}
                         onDoubleClick={() => header.column.resetSize()}
                         className={cn(
-                          "absolute right-0 top-0 h-full w-4 cursor-col-resize select-none touch-none group/resize",
-                          "flex items-center justify-center",
-                          header.column.getIsResizing() && "bg-primary/10"
+                          "absolute right-0 top-0 h-full w-2 cursor-col-resize select-none touch-none",
+                          "opacity-0 hover:opacity-100 transition-opacity",
+                          header.column.getIsResizing() && "opacity-100"
                         )}
-                        title="Drag to resize, double-click to reset"
+                        title="Drag to resize"
                       >
-                        {/* Visual resize bar - always visible */}
                         <div className={cn(
-                          "w-[3px] h-3/5 rounded-full transition-all",
+                          "w-0.5 h-full",
                           header.column.getIsResizing()
                             ? "bg-primary"
-                            : "bg-muted-foreground/30 group-hover/resize:bg-primary"
+                            : "bg-border hover:bg-primary"
                         )} />
                       </div>
                     )}
